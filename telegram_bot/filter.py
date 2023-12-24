@@ -1,9 +1,8 @@
 import telebot
 from telebot import types
 from telebot.callback_data import CallbackDataFilter
-from main import bot
 
-from telegram_bot import TELEGRAM_BANK_ID
+from telegram_bot import bot, TELEGRAM_BANK_ID
 
 class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
     key = 'is_admin'
