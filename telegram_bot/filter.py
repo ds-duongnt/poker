@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 from telebot.callback_data import CallbackDataFilter
-from bot import bot
+from main import bot
 
 from telegram_bot import TELEGRAM_BANK_ID
 
