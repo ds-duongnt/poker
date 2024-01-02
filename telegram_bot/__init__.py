@@ -55,9 +55,9 @@ def miss(message):
         return
     # Get current list
     sheet = source_sheet.worksheet('Register')
-    current_list = sheet.get_all_values()[1:]
+    current_list = sheet.get("A2:D")
 
-    tag_list = [f"[{v[1] if v[-1] == '' else v[-1]}](tg://user?id={v[0]})" for v in current_list]
+    tag_list = [f"[{v[1] if len(v) < 4 else v[-1]}](tg://user?id={v[0]})" for v in current_list]
     tag_text = ' '.join(tag_list)
     
     bot.send_message(message.chat.id, text = f'Nhớ anh em {tag_text}', parse_mode = 'Markdown', message_thread_id = message.message_thread_id)
@@ -72,7 +72,7 @@ def register(message):
     
     # Get current list
     sheet = source_sheet.worksheet('Register')
-    current_list = sheet.get_all_values()
+    current_list = sheet.get("A1:D")
     id_list = [v[0] for v in current_list]
     # User requesting
     user =  message.from_user
@@ -277,6 +277,7 @@ def record(message):
         return
     
     data = src_sh.get_all_values()[2:]
+    data = [v for v in data if v[0]!=''] # Clear missing name rows
     data = [profit_convert(v[3]) for v in data]
     
     for i, v in enumerate(data):

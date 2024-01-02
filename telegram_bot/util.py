@@ -4,6 +4,7 @@ def format_telegram_message(string):
     return string
 
 def profit_convert(string):
+    string = string.replace(',','')
     if string == '':
         return '-'
     if '(' in string:
